@@ -16,8 +16,9 @@ img {
 }
 
 body {
-  font-family: var(--primary-text-family);
+  font-family: var(--font-family);
   color: var(--primary-text-color);
+  background-color: var(--bg-primary-color);
 }
 
 ul,
