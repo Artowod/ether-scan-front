@@ -1,23 +1,28 @@
 const SingleTransaction = ({
-  blockNumber,
-  hash,
-  from,
-  to,
-  confirmations = 100,
-  blockTimestamp = "02/03/2022",
-  value,
-  transactionFee = 0.003,
+  blockNumber = 0,
+  hash = 0x00,
+  from = 0x00,
+  to = 0x00,
+  confirmations = 0,
+  blockTimestamp = "dd/mm/YY",
+  value = 0,
+  transactionFee = 0,
 }) => {
+  blockNumber = +blockNumber.toString(10);
+  value = +value.toString(10) / 1000000000 / 1000000000; // in Eth.
+
   return (
     <tr className="main__transaction-row">
-      <td>{blockNumber}</td>
-      <td>{hash}</td>
-      <td>{from}</td>
-      <td>{to}</td>
-      <td>{confirmations}</td>
-      <td>{blockTimestamp}</td>
-      <td>{value}</td>
-      <td>{transactionFee}</td>
+      <td className="main__transactions-column">{blockNumber}</td>
+      <td className="main__transactions-column">
+        <a href="https://etherscan.io/">{hash}</a>
+      </td>
+      <td className="main__transactions-column">{from}</td>
+      <td className="main__transactions-column">{to}</td>
+      <td className="main__transactions-column">{confirmations}</td>
+      <td className="main__transactions-column">{blockTimestamp}</td>
+      <td className="main__transactions-column">{value}</td>
+      <td className="main__transactions-column">{transactionFee}</td>
     </tr>
   );
 };
