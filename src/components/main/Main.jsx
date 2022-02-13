@@ -1,19 +1,17 @@
+import InputForm from "../InputForm";
+import Transactions from "../Transactions";
+
 const Main = () => {
   return (
-    <main>
-      <form onSubmit={this}>
-        <input type="search" placeholder="Search..." />
-        <select size="1" form required name="transaction[]">
-          {/* <option disabled>Выберите героя</option> */}
-          <option selected value="Address">
-            Address
-          </option>
-          <option value="Sender">Sender</option>
-          <option value="Receiver">Receiver</option>
-          <option value="BlockId">Block Id</option>
-        </select>
-        <input type="submit" value="" />
-      </form>
+    <main className="main">
+      <div className="main__wrapper">
+        <div className="main__form-wrapper">
+          <InputForm />
+        </div>
+        <div className="main__transactions-wrapper">
+          <Transactions />
+        </div>
+      </div>
     </main>
   );
 };

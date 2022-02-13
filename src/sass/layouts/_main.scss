@@ -1,0 +1,33 @@
+main {
+  height: calc(100vh - 57px - 72px);
+}
+
+.main__wrapper {
+  padding: 60px 130px 48px 130px;
+}
+
+.main__form-wrapper {
+  margin-bottom: 16px;
+  border: 1px red solid;
+}
+
+.main__transactions-wrapper {
+  border: 1px blue solid;
+}
+
+.main__transaction-table {
+  max-height: 60vh;
+  max-width: 1180px;
+  border: 2px green solid;
+  margin-bottom: 56px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.main__pagination {
+  height: 30px;
+  width: 250px;
+  border: 2px green solid;
+  margin: 0 auto;
+  //   margin-bottom: 48px;
+}

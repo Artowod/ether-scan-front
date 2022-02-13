@@ -19,6 +19,10 @@ body {
   font-family: var(--font-family);
   color: var(--primary-text-color);
   background-color: var(--bg-primary-color);
+  min-width: 820px;
+  max-width: 1440px;
+
+  margin: 0 auto;
 }
 
 ul,

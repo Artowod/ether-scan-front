@@ -1,14 +1,23 @@
 .footer {
-  height: 72px;
+  height: 57px;
   max-width: 1440px;
-  background-color: var(--bg-header-color);
+  background-color: var(--bg-footer-color);
 
-  &__text-block {
-    display: block;
-    margin-left: 130px;
-    padding-top: 10px;
+  &__content-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px 130px;
+    padding-top: 14px;
     color: var(--secondary-text-color);
-    font-size: 40px;
+    font-size: 24px;
     line-height: 1.2;
+  }
+
+  &__text-middle {
+    font-size: 16px;
+  }
+  &__text-right {
+    font-size: 16px;
   }
 }
