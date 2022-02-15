@@ -1,6 +1,7 @@
 import SingleTransaction from "./SingleTransaction";
+import { v4 as uuidv4 } from "uuid";
 
-const Transactions = ({ data }) => {
+const Transactions = ({ filteredData }) => {
   // const transactions = [
   //   { type: "type", amount: "amount", currency: "value" },
   //   { type: "type", amount: "amouhdfhfdnt", currency: "value" },
@@ -12,16 +13,16 @@ const Transactions = ({ data }) => {
   // ];
   let transactions = [];
 
-  if (!Array.isArray(data)) {
-    transactions.push(data);
+  if (!Array.isArray(filteredData)) {
+    transactions.push(filteredData);
   } else {
-    transactions = data;
+    transactions = filteredData;
   }
 
   console.log(transactions);
   const oneTransaction = transactions
-    ? transactions.map(({ id, ...props }) => (
-        <SingleTransaction key={id} {...props} />
+    ? transactions.map((data) => (
+        <SingleTransaction id={uuidv4()} data={data} />
       ))
     : [];
   return (

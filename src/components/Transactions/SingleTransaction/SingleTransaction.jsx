@@ -1,26 +1,35 @@
-const SingleTransaction = ({
-  blockNumber = 0,
-  hash = 0x00,
-  from = 0x00,
-  to = 0x00,
-  confirmations = 0,
-  blockTimestamp = "dd/mm/YY",
-  value = 0,
-  transactionFee = 0,
-}) => {
+import dateFormat from "dateformat";
+
+const SingleTransaction = ({ id, data }) => {
+  let {
+    blockNumber = 0,
+    hash = 0x00,
+    from = 0x00,
+    to = 0x00,
+    confirmations = 0,
+    timestamp = "dd/mm/YY",
+    value = 0,
+    transactionFee = 0,
+  } = data;
+
   blockNumber = +blockNumber.toString(10);
   value = +value.toString(10) / 1000000000 / 1000000000; // in Eth.
+  const transactionLink = `https://etherscan.io/tx/${hash}`;
+  const timestampString = dateFormat(
+    Date.now(+timestamp.toString(16)),
+    "mmm-dd-yyyy"
+  );
 
   return (
-    <tr className="main__transaction-row">
+    <tr key={id} className="main__transaction-row">
       <td className="main__transactions-column">{blockNumber}</td>
       <td className="main__transactions-column">
-        <a href="https://etherscan.io/">{hash}</a>
+        <a href={transactionLink}>{hash}</a>
       </td>
       <td className="main__transactions-column">{from}</td>
       <td className="main__transactions-column">{to}</td>
       <td className="main__transactions-column">{confirmations}</td>
-      <td className="main__transactions-column">{blockTimestamp}</td>
+      <td className="main__transactions-column">{timestampString}</td>
       <td className="main__transactions-column">{value}</td>
       <td className="main__transactions-column">{transactionFee}</td>
     </tr>

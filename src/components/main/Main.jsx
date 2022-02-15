@@ -12,10 +12,10 @@ const Main = () => {
     <main className="main">
       <div className="main__wrapper">
         <div className="main__form-wrapper">
-          <InputForm searchData={shareTransactions} />
+          <InputForm filteredData={shareTransactions} />
         </div>
         <div className="main__transactions-wrapper">
-          <Transactions data={transactions} />
+          <Transactions filteredData={transactions} />
         </div>
       </div>
     </main>

@@ -1,7 +1,7 @@
 import * as dbRequests from "../../shared/services/Api.jsx";
 import { useState } from "react";
 
-const InputForm = ({ searchData }) => {
+const InputForm = ({ filteredData }) => {
   const [inputValue, setInputValue] = useState("");
   const [selectValue, setSelectValue] = useState("Address");
 
@@ -18,7 +18,7 @@ const InputForm = ({ searchData }) => {
           .getTransactionById(inputValue)
           .then(({ data }) => {
             console.log(data.result);
-            searchData(data.result);
+            filteredData(data.result);
           })
           .catch((err) => {
             console.log("Error", err);
@@ -29,7 +29,7 @@ const InputForm = ({ searchData }) => {
           .getTransactionsBySenderAddr(inputValue)
           .then(({ data }) => {
             console.log(data.result);
-            searchData(data.result);
+            filteredData(data.result);
           })
           .catch((err) => {
             console.log("Error", err);
@@ -40,7 +40,7 @@ const InputForm = ({ searchData }) => {
           .getTransactionsByRecipientAddr(inputValue)
           .then(({ data }) => {
             console.log(data.result);
-            searchData(data.result);
+            filteredData(data.result);
           })
           .catch((err) => {
             console.log("Error", err);
@@ -52,7 +52,7 @@ const InputForm = ({ searchData }) => {
           .getTransactionsByBlockNum(inputValue)
           .then(({ data }) => {
             console.log(data.result);
-            searchData(data.result);
+            filteredData(data.result);
           })
           .catch((err) => {
             console.log("Error", err);
