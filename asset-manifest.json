@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/etherscan-front/static/css/main.67c3998d.css",
+    "main.js": "/etherscan-front/static/js/main.6a7dd4aa.js",
+    "index.html": "/etherscan-front/index.html",
+    "static/media/search.svg": "/etherscan-front/static/media/search.844d3d2101b7157c1c8d.svg",
+    "main.67c3998d.css.map": "/etherscan-front/static/css/main.67c3998d.css.map",
+    "main.6a7dd4aa.js.map": "/etherscan-front/static/js/main.6a7dd4aa.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.67c3998d.css",
+    "static/js/main.6a7dd4aa.js"
+  ]
+}
