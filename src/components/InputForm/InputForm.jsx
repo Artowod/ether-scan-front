@@ -1,66 +1,84 @@
 import * as dbRequests from "../../shared/services/Api.jsx";
 import { useState } from "react";
+import Notiflix from "notiflix";
 
 const InputForm = ({ filteredData }) => {
   const [inputValue, setInputValue] = useState("");
   const [selectValue, setSelectValue] = useState("Address");
+  const [state, setState] = useState("ready");
 
   const onSubmit = (event) => {
     event.preventDefault();
-    const transactionId =
-      "0x86467d040e81a96a4438d844c486f588e079fcd1d220c8dbdf1780be74d27833";
-
-    console.log(selectValue);
-    switch (selectValue) {
-      case "Address":
-        // DONE
-        dbRequests
-          .getTransactionById(inputValue)
-          .then(({ data }) => {
-            console.log(data.result);
-            filteredData(data.result);
-          })
-          .catch((err) => {
-            console.log("Error", err);
-          });
-        break;
-      case "Sender":
-        dbRequests
-          .getTransactionsBySenderAddr(inputValue)
-          .then(({ data }) => {
-            console.log(data.result);
-            filteredData(data.result);
-          })
-          .catch((err) => {
-            console.log("Error", err);
-          });
-        break;
-      case "Receiver":
-        dbRequests
-          .getTransactionsByRecipientAddr(inputValue)
-          .then(({ data }) => {
-            console.log(data.result);
-            filteredData(data.result);
-          })
-          .catch((err) => {
-            console.log("Error", err);
-          });
-        break;
-      case "BlockId":
-        // DONE
-        dbRequests
-          .getTransactionsByBlockNum(inputValue)
-          .then(({ data }) => {
-            console.log(data.result);
-            filteredData(data.result);
-          })
-          .catch((err) => {
-            console.log("Error", err);
-          });
-        break;
-      default:
-        console.log("selectValue");
-    }
+    setState("pending");
+    if (!inputValue) {
+      Notiflix.Notify.warning("Please enter valid request.", {
+        timeout: 4000,
+      });
+      setState("ready");
+    } else
+      switch (selectValue) {
+        case "Address":
+          dbRequests
+            .getTransactionById(inputValue)
+            .then(({ data }) => {
+              if (data) {
+                setState("ready");
+                filteredData(data.result);
+              }
+            })
+            .catch((err) => {
+              Notiflix.Notify.warning(err.response.data.message, {
+                timeout: 4000,
+              });
+            });
+          break;
+        case "Sender":
+          dbRequests
+            .getTransactionsBySenderAddr(inputValue)
+            .then(({ data }) => {
+              if (data) {
+                setState("ready");
+                filteredData(data.result);
+              }
+            })
+            .catch((err) => {
+              Notiflix.Notify.warning(err.response.data.message, {
+                timeout: 4000,
+              });
+            });
+          break;
+        case "Receiver":
+          dbRequests
+            .getTransactionsByRecipientAddr(inputValue)
+            .then(({ data }) => {
+              if (data) {
+                setState("ready");
+                filteredData(data.result);
+              }
+            })
+            .catch((err) => {
+              Notiflix.Notify.warning(err.response.data.message, {
+                timeout: 4000,
+              });
+            });
+          break;
+        case "BlockId":
+          // DONE
+          dbRequests
+            .getTransactionsByBlockNum(inputValue)
+            .then(({ data }) => {
+              if (data) {
+                setState("ready");
+                filteredData(data.result);
+              }
+            })
+            .catch((err) => {
+              Notiflix.Notify.warning(err.response.data.message);
+            });
+          break;
+        default:
+          console.log("selectValue");
+      }
   };
 
   const handleKeyPress = (event) => {
@@ -72,7 +90,7 @@ const InputForm = ({ filteredData }) => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form className="main__form" onSubmit={onSubmit}>
       <input
         className="main__search-input"
         type="search"
@@ -80,14 +98,20 @@ const InputForm = ({ filteredData }) => {
         value={inputValue}
         onChange={handleKeyPress}
       />
-      <select size="1" required name="transaction[]" onChange={handleSelect}>
-        {/* <option disabled>Выберите героя</option> */}
+      <select
+        className="main__form-select"
+        size="1"
+        required
+        name="transaction[]"
+        onChange={handleSelect}
+      >
         <option value="Address">Address</option>
         <option value="Sender">Sender</option>
         <option value="Receiver">Receiver</option>
         <option value="BlockId">Block Id</option>
       </select>
       <input className="main__submit-btn" type="submit" value="" />
+      {state === "pending" && <div className="main__loading">Loading...</div>}
     </form>
   );
 };

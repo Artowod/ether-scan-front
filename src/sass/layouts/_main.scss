@@ -10,7 +10,6 @@ main {
 
 .main__form-wrapper {
   margin-bottom: 16px;
-  border: 1px red solid;
 }
 
 .main__transactions-table-wrapper {
@@ -25,11 +24,10 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 30px;
-  width: 250px;
-  border: 2px green solid;
+  //   height: 30px;
+  //   width: 250px;
+  //   border: 2px green solid;
   margin: 0 auto;
-  //   margin-bottom: 48px;
 }
 
 .main__transactions-table {
@@ -44,7 +42,7 @@ main {
 }
 
 .main__transactions-header {
-  background-color: rgb(101, 154, 204);
+  background-color: var(--bg-secondary-color);
 }
 
 .main__transactions-header > tr {
@@ -61,7 +59,7 @@ main {
 
 .main__transaction-row {
   height: 40px;
-  color: grey;
+  color: var(--primary-text-color);
   text-align: center;
   background-color: var(--bg-first-transaction-color);
 }
@@ -72,14 +70,47 @@ main {
   border: 1px white solid;
 }
 
+.main__form {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.main__form-select {
+  display: inline-block;
+  height: 48px;
+  width: 143px;
+  padding-left: 12px;
+
+  border: 2px var(--border-color);
+  border-left: 0px;
+  border-style: revert;
+  border-radius: 0 10px 10px 0;
+  color: var(--primary-text-color);
+}
+
 .main__submit-btn {
-  border-radius: 5px;
   width: 48px;
   height: 48px;
+  margin-left: 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background-color: var(--bg-secondary-color);
+  background-image: url("../../images/search.svg");
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .main__search-input {
-  border-radius: 5px;
-  width: 381px;
+  border: 2px var(--border-color) solid;
+  border-radius: 10px 0 0 10px;
+  width: 237px;
   height: 48px;
+  padding-left: 16px;
+  color: var(--primary-text-color);
+}
+
+.main__loading {
+  margin-left: 12px;
 }

@@ -1,25 +1,16 @@
 import SingleTransaction from "./SingleTransaction";
 import { v4 as uuidv4 } from "uuid";
+import Paginate from "./Paginate";
 
 const Transactions = ({ filteredData }) => {
-  // const transactions = [
-  //   { type: "type", amount: "amount", currency: "value" },
-  //   { type: "type", amount: "amouhdfhfdnt", currency: "value" },
-  //   { type: "type", amount: "amount", currency: "dfh" },
-  //   { type: "tbdbfdype", amount: "amount", currency: "valhdhue" },
-  //   { type: "type", amount: "amofddbfunt", currency: "value" },
-  //   { type: "type", amount: "amount", currency: "value" },
-  //   { type: "type", amount: "amouncvncvt", currency: "value" },
-  // ];
   let transactions = [];
-
+  console.log(filteredData);
   if (!Array.isArray(filteredData)) {
     transactions.push(filteredData);
   } else {
     transactions = filteredData;
   }
 
-  console.log(transactions);
   const oneTransaction = transactions
     ? transactions.map((data) => (
         <SingleTransaction id={uuidv4()} data={data} />
@@ -41,10 +32,12 @@ const Transactions = ({ filteredData }) => {
               <th className="main__transactions-column">Transaction Fee</th>
             </tr>
           </thead>
-          <tbody>{oneTransaction}</tbody>
+          {filteredData && <tbody>{oneTransaction}</tbody>}
         </table>
       </div>
-      <div className="main__pagination">PAGINATION</div>
+      <div className="main__pagination">
+        <Paginate />
+      </div>
     </>
   );
 };
