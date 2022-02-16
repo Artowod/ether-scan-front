@@ -3,6 +3,20 @@ import axios from "axios";
 
 const host = defaultHost["host"];
 
+export const initializingApp = async () => {
+  const response = await axios.get(`${host}etherium/initializing`);
+  return response;
+};
+
+export const stop = async () => {
+  await axios.get(`${host}etherium/stop`);
+};
+
+export const status = async () => {
+  const status = await axios.get(`${host}etherium/status`);
+  return status;
+};
+
 export const getTransactionsByRecipientAddr = async (recipientAddr) => {
   const response = await axios.get(
     `${host}transactions/recipient/${recipientAddr}`

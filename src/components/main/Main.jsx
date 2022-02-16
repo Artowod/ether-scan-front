@@ -1,12 +1,33 @@
 import InputForm from "../InputForm";
 import Transactions from "../Transactions";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import * as dbRequests from "../../shared/services/Api.jsx";
+import Notiflix from "notiflix";
 
 const Main = () => {
   const [transactions, setTransactions] = useState([]);
   const shareTransactions = (updatedTransactions) => {
     setTransactions(updatedTransactions);
   };
+
+  useEffect(() => {
+    dbRequests
+      .status()
+      .then(({ status }) => {
+        if (!status)
+          Notiflix.Notify.warning(
+            "Updating has been stopped on Server. Please refresh the page.",
+            {
+              timeout: 6000,
+            }
+          );
+      })
+      .catch((err) => {
+        Notiflix.Notify.warning(err.response, {
+          timeout: 3000,
+        });
+      });
+  });
 
   return (
     <main className="main">
